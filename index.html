@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Lighthouse - Listing Quality Improvement Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #F0F4F8;
+            color: #333333;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        .metric-card h3 {
+            color: #004AAD;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .metric-card .metric {
+            font-size: 3.75rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #004AAD;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #004AAD;
+            margin-bottom: 1rem;
+        }
+
+        .track-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+            padding-left: 2rem;
+            border-left: 4px solid #00C2D1;
+        }
+
+        .timeline-item:last-child {
+            border-left: 4px solid transparent;
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -0.7rem;
+            top: 0.15rem;
+            height: 1rem;
+            width: 1rem;
+            border-radius: 9999px;
+            background-color: #00C2D1;
+            border: 2px solid #F0F4F8;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <header class="bg-[#004AAD] text-white p-6 md:p-8 shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-3xl font-bold">Project Lighthouse</h1>
+            <p class="text-lg text-[#00C2D1]">Fixing the "Silent Leak" & Strengthening Our Marketplace</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-8">
+
+        <section id="mission" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card metric-card text-center">
+                    <h3>Current Rejection Rate</h3>
+                    <p class="metric text-[#FF4D6D]">28%</p>
+                    <p class="text-gray-600">Nearly 1 in 3 listings fail on the first attempt, creating friction and
+                        inefficiency.</p>
+                </div>
+                <div class="card metric-card text-center">
+                    <h3>Our 8-Week Mission</h3>
+                    <p class="metric text-[#00C2D1]">30%</p>
+                    <p class="text-gray-600">Reduce the listing rejection rate, targeting a new benchmark below 20%.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="charter" class="card mb-12">
+            <h2 class="section-title -mt-1.5">Project Charter</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="card-title">Problem Statement</h3>
+                    <p>A high (28%) listing rejection rate is creating a "silent leak" in marketplace operations,
+                        negatively impacting agent satisfaction, customer experience, internal workload, and business
+                        liquidity. This inefficiency erodes trust and our core value proposition.</p>
+                </div>
+                <div>
+                    <h3 class="card-title">Goal & KPIs</h3>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li><strong>Primary Goal:</strong> Reduce listing rejection rate by 30% in 8 weeks.</li>
+                        <li><strong>KPIs:</strong> Listing Rejection Rate (%), Avg. Time-to-Live (hours), Agent
+                            Satisfaction (CSAT), CX Ticket Volume.</li>
+                    </ul>
+                </div>
+                <div class="md:col-span-2">
+                    <h3 class="card-title">Scope</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-semibold text-green-600">In Scope</h4>
+                            <ul class="list-disc list-inside text-sm">
+                                <li>Redesigning agent-facing guidelines.</li>
+                                <li>Optimizing internal review processes.</li>
+                                <li>Targeted training (internal & external).</li>
+                                <li>1 week of focused engineering for fast wins.</li>
+                                <li>Cross-functional workflow alignment.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-red-600">Out of Scope</h4>
+                            <ul class="list-disc list-inside text-sm">
+                                <li>Major policy changes.</li>
+                                <li>Additional budget or new hiring.</li>
+                                <li>Long-term platform re-architecture.</li>
+                                <li>Building separate regional solutions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="root-cause" class="mb-12">
+            <h2 class="section-title">Root Cause Analysis</h2>
+            <p class="text-center text-lg text-gray-700 max-w-3xl mx-auto mb-8">Our investigation found that rejection
+                drivers are spread across four key areas, with listing quality and compliance being the largest
+                contributor. Inefficient processes and a lack of clear agent guidance are also major factors.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="card">
+                    <h3 class="card-title text-center">Rejection Reason Categories</h3>
+                    <p class="text-center text-gray-600 text-sm mb-4">A high-level breakdown of where our rejections
+                        originate.</p>
+                    <div class="chart-container">
+                        <canvas id="rootCauseDonut"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 class="card-title text-center">Top Specific Rejection Reasons</h3>
+                    <p class="text-center text-gray-600 text-sm mb-4">Poor photo quality is the single biggest driver,
+                        followed by location and document issues.</p>
+                    <div class="chart-container">
+                        <canvas id="topReasonsBar"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="mb-12">
+            <h2 class="section-title">The Ripple Effect: Impact Across PF</h2>
+            <p class="text-center text-lg text-gray-700 max-w-3xl mx-auto mb-8">This isn't just a quality issue; it's a
+                drag on the entire business. The inefficiency creates measurable workload for internal teams, damages
+                agent relationships, and ultimately degrades the customer experience.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="card">
+                    <h3 class="card-title text-center">Impact on Internal Teams</h3>
+                    <p class="text-center text-gray-600 text-sm mb-4">Normalized data shows a disproportionate burden on
+                        our front-line teams.</p>
+                    <div class="chart-container">
+                        <canvas id="internalImpactBar"></canvas>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 class="card-title text-center">Impact on Agents & Customers</h3>
+                    <div class="mt-4">
+                        <h4 class="font-bold text-lg text-[#FF4D6D]">Agent Impact ⚠️</h4>
+                        <ul class="list-disc list-inside space-y-1 mt-2 text-gray-700">
+                            <li>Increased frustration and time wasted on re-submissions.</li>
+                            <li>Delayed time-to-market for properties, impacting their business.</li>
+                            <li>Lower trust in Property Finder's platform and processes.</li>
+                            <li>Higher probability of shifting listings to competitors.</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="font-bold text-lg text-[#FF9F1C]">Customer Impact 🏠</h4>
+                        <ul class="list-disc list-inside space-y-1 mt-2 text-gray-700">
+                            <li>Fewer high-quality, fresh listings available to search.</li>
+                            <li>Reduced accuracy and freshness of marketplace data.</li>
+                            <li>Inconsistent user experience when searching for homes.</li>
+                            <li>Erosion of trust in the accuracy of our listings.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plan" class="mb-12">
+            <h2 class="section-title">Our 8-Week Action Plan</h2>
+            <p class="text-center text-lg text-gray-700 max-w-3xl mx-auto mb-8">A focused, three-track plan executable
+                within our constraints. We will tackle process, content, and platform improvements in parallel to
+                achieve our goal.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <div class="card track-card">
+                    <h3 class="text-[#00C2D1]">Track 1: Process & People</h3>
+                    <p class="text-sm text-gray-600 mb-4">Led by Sales, CX & People</p>
+                    <p class="mb-4">Clarify guidelines, align internal teams, and standardize agent training to ensure
+                        consistency from day one.</p>
+                    <ol class="list-decimal list-inside space-y-2 font-medium">
+                        <li>Standardize Agent Training Deck</li>
+                        <li>Create Internal CX/QA Playbook</li>
+                        <li>Host Internal Policy Refreshers</li>
+                        <li>Streamline Agent Support Path</li>
+                    </ol>
+                </div>
+                <div class="card track-card">
+                    <h3 class="text-[#FF9F1C]">Track 2: Content & Comms</h3>
+                    <p class="text-sm text-gray-600 mb-4">Led by Marketing, SEO & Learning</p>
+                    <p class="mb-4">Proactively educate agents on *how* to succeed with clear, simple, and engaging
+                        content delivered through all channels.</p>
+                    <ol class="list-decimal list-inside space-y-2 font-medium">
+                        <li>Launch "Top 5 Mistakes" Guide</li>
+                        <li>Create "How-To" Video Shorts</li>
+                        <li>Publish SEO Best Practice Guide</li>
+                        <li>Begin Weekly "Pro-Tip" Comms</li>
+                    </ol>
+                </div>
+                <div class="card track-card">
+                    <h3 class="text-[#FF4D6D]">Track 3: Platform & Tech</h3>
+                    <p class="text-sm text-gray-600 mb-4">Led by Product, Eng & Data</p>
+                    <p class="mb-4">Deploy high-impact, low-effort tech improvements to provide instant feedback and
+                        better data visibility.</p>
+                    <ol class="list-decimal list-inside space-y-2 font-medium">
+                        <li>Improve In-Product Error Messages</li>
+                        <li>Deploy Basic Photo Validation</li>
+                        <li>Update QA Rejection Dashboard</li>
+                        <li>Analyze & Report on Initial Data</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title">Project Milestones</h3>
+                <div class="relative">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-semibold text-lg">Weeks 1-2: Foundation & Fast Wins</h4>
+                        <p class="text-gray-700">Deploy Engineering fix (Track 3). Draft all new training content &
+                            playbooks (Track 1 & 2). Establish data baseline.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-semibold text-lg">Weeks 3-4: Agent Education Push</h4>
+                        <p class="text-gray-700">Launch "Top 5 Mistakes" campaign (Track 2). Sales teams begin rolling
+                            out new standardized training (Track 1).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-semibold text-lg">Weeks 5-6: Monitor & Optimize</h4>
+                        <p class="text-gray-700">Data team reports on initial rejection rate impact (Track 3). CX uses
+                            new playbook and gathers agent feedback for optimization (Track 1).</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-semibold text-lg">Weeks 7-8: Final Review & Handover</h4>
+                        <p class="text-gray-700">Measure progress against 30% goal. Present final report to leadership.
+                            Handover new processes and dashboards to BAU teams.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="governance" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="card">
+                <h3 class="card-title">Risk Register</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="p-2 font-semibold">Risk</th>
+                                <th class="p-2 font-semibold">Impact</th>
+                                <th class="p-2 font-semibold">Mitigation</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                            <tr>
+                                <td class="p-2">Low agent adoption of new guides</td>
+                                <td class="p-2"><span class="font-medium text-yellow-600">Medium</span></td>
+                                <td class="p-2">Multi-channel comms campaign (Track 2) & Sales reinforcement.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Engineering fix takes > 1 week</td>
+                                <td class="p-2"><span class="font-medium text-red-600">High</span></td>
+                                <td class="p-2">Aggressively de-scope to essential validation only; protect timeline.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Internal teams don't follow new process</td>
+                                <td class="p-2"><span class="font-medium text-yellow-600">Medium</span></td>
+                                <td class="p-2">Internal refreshers, management buy-in, and dashboard visibility.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Rejection rate dips, then rises post-project</td>
+                                <td class="p-2"><span class="font-medium text-red-600">High</span></td>
+                                <td class="p-2">Permanent dashboards (Track 3) and process ownership handover.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <h3 class="card-title">Communication Plan</h3>
+                <div>
+                    <h4 class="font-semibold text-[#004AAD]">Internal Communication</h4>
+                    <ul class="list-disc list-inside space-y-1 mt-2 text-gray-700">
+                        <li><strong>Weekly:</strong> 30-min Task Force Standup.</li>
+                        <li><strong>Bi-Weekly:</strong> 1-page email update to Leadership Sponsors.</li>
+                        <li><strong>Monthly:</strong> Brief update in Company All-Hands.</li>
+                        <li><strong>Ad-Hoc:</strong> Updates via dedicated Slack channel.</li>
+                    </ul>
+                </div>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-[#004AAD]">Agent Communication</h4>
+                    <ul class="list-disc list-inside space-y-1 mt-2 text-gray-700">
+                        <li><strong>Weekly:</strong> "Pro-Tip" Newsletter (Track 2).</li>
+                        <li><strong>Ongoing:</strong> Direct training and check-ins from Sales teams (Track 1).</li>
+                        <li><strong>Ongoing:</strong> Updated Help Center articles and in-product tooltips.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-8 text-gray-600 text-sm mt-8">
+        Property Finder - Project Lighthouse 2025
+    </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+
+            function wrapLabels(label, maxWidth) {
+                if (typeof label !== 'string' || label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > maxWidth && currentLine.length > 0) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                }
+                lines.push(currentLine.trim());
+                return lines;
+            }
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                if (!item) return '';
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const commonTooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        backgroundColor: '#333',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 4
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 12 },
+                            padding: 15
+                        }
+                    }
+                }
+            };
+
+            const palette = ['#00C2D1', '#FF9F1C', '#FF4D6D', '#004AAD', '#5A67D8'];
+
+            if (document.getElementById('rootCauseDonut')) {
+                const ctxDonut = document.getElementById('rootCauseDonut').getContext('2d');
+                new Chart(ctxDonut, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Quality & Compliance (Photos, Location, Docs)', 'Process & Workflow (Incomplete, Duplicates)', 'Technology & Platform (No Auto-Validation)', 'People & Org (Training, Slow Response)'].map(l => wrapLabels(l, 25)),
+                        datasets: [{
+                            data: [60, 25, 10, 5],
+                            backgroundColor: palette,
+                            borderColor: '#FFFFFF',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        ...commonTooltipConfig,
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        cutout: '60%',
+                    }
+                });
+            }
+
+            if (document.getElementById('topReasonsBar')) {
+                const ctxBar = document.getElementById('topReasonsBar').getContext('2d');
+                new Chart(ctxBar, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Low-Quality/Inappropriate Photos', 'Incorrect Location Pin', 'Missing/Outdated Documents', 'Incomplete Listing Information', 'Duplicate Listings', 'Confusing Guidelines'].map(l => wrapLabels(l, 16)),
+                        datasets: [{
+                            label: 'Percentage of Rejections',
+                            data: [35, 20, 15, 10, 5, 5],
+                            backgroundColor: palette[0],
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        ...commonTooltipConfig,
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        indexAxis: 'y',
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: true,
+                                    borderDash: [2, 3],
+                                },
+                                ticks: {
+                                    font: { size: 10 }
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    font: { size: 11 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            if (document.getElementById('internalImpactBar')) {
+                const ctxImpact = document.getElementById('internalImpactBar').getContext('2d');
+                new Chart(ctxImpact, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Listing Quality Team (Review Load)', 'CX Support (Ticket Volume)', 'Sales (Agent Complaints)'].map(l => wrapLabels(l, 16)),
+                        datasets: [{
+                            label: 'Increased Workload (Normalized)',
+                            data: [100, 65, 45],
+                            backgroundColor: [palette[0], palette[1], palette[2]],
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        ...commonTooltipConfig,
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 110,
+                                grid: {
+                                    display: true,
+                                    borderDash: [2, 3],
+                                }
+                            },
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    font: { size: 11 }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
